@@ -513,17 +513,26 @@ body {
     border: none;
     cursor: pointer;
     padding: 8px;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 1001;
 }
 
 .mobile-menu-button svg {
     width: 24px;
     height: 24px;
     color: #1e293b;
+    stroke-width: 2;
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
     .mobile-menu-button {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .nav-links {
@@ -537,6 +546,7 @@ body {
         flex-direction: column;
         gap: 16px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
     }
 
     .nav-links.active {
@@ -547,6 +557,7 @@ body {
         width: 100%;
         text-align: center;
         padding: 12px;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .contact-button {
