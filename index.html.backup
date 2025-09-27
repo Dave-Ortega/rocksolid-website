@@ -38,7 +38,7 @@
     <div class="hero-background"></div>
     <div class="hero-content">
         <h1>Professional <span>Countertop & Slab</span> Solutions</h1>
-        <p>Welcome to Colorado Fabrication Partners, your trusted partner in premium countertop projects. We specialize in delivering exceptional countertop solutions through our state-of-the-art fabrication facility. From natural stone to engineered surfaces, we ensure every project meets our exacting standards of quality and craftsmanship with our in-house expertise and advanced equipment.</p>
+        <p>Welcome to Colorado Fabrication Partners, your trusted partner in premium countertop projects. We specialize in delivering exceptional countertop solutions through our network of top-tier fabrication partners. From natural stone to engineered surfaces, we ensure every project meets our exacting standards of quality and craftsmanship.</p>
         <div class="hero-cta-group">
             <a href="#contact" class="hero-cta primary">Discuss Your Project</a>
             <a href="#services" class="hero-cta secondary">Explore Our Services</a>
@@ -60,12 +60,12 @@
         <div class="step-card">
             <div class="step-number">2</div>
             <h3>Project Management</h3>
-            <p>Our experienced team oversees every aspect of your project in our state-of-the-art facility, ensuring precise fabrication and quality control at every step of the process.</p>
+            <p>Our experienced team oversees every aspect of your project, ensuring precise fabrication and quality control at every step of the process.</p>
         </div>
         <div class="step-card">
             <div class="step-number">3</div>
             <h3>Professional Installation</h3>
-            <p>We coordinate and supervise the installation process with our own team, ensuring a perfect fit and finish that exceeds your expectations.</p>
+            <p>We coordinate and supervise the installation process, ensuring a perfect fit and finish that exceeds your expectations.</p>
         </div>
     </div>
 </div>
@@ -78,8 +78,8 @@
         <div class="about-grid">
             <div class="about-content">
                 <h2>Our Story</h2>
-                <p>Colorado Fabrication Partners was founded with a commitment to excellence in countertop solutions. We've built our reputation on delivering exceptional quality and service through our in-house fabrication expertise and state-of-the-art facility.</p>
-                <p>Our team brings extensive industry experience and expertise to every project, ensuring that each installation meets our high standards for quality and craftsmanship. With our own fabrication facility, we have complete control over every step of the process, from material selection to final installation.</p>
+                <p>Colorado Fabrication Partners was founded with a commitment to excellence in countertop solutions. We've built our reputation on delivering exceptional quality and service through our carefully selected network of fabrication partners.</p>
+                <p>Our team brings extensive industry experience and expertise to every project, ensuring that each installation meets our high standards for quality and craftsmanship, regardless of the material chosen.</p>
                 <p>Our mission is to provide our clients with premium countertop solutions, backed by our commitment to quality, service, and customer satisfaction.</p>
             </div>
             <div class="about-image">
@@ -93,7 +93,7 @@
 <section class="section section-dark" id="services">
     <div class="container">
         <h2 class="section-title">Our Services</h2>
-        <p>We offer comprehensive countertop solutions for both residential and commercial projects, fabricated in our own facility to ensure the highest quality results for every installation.</p>
+        <p>We offer comprehensive countertop solutions for both residential and commercial projects, ensuring the highest quality results for every installation.</p>
         
         <div class="services-grid">
             <div class="service-card">
@@ -113,7 +113,7 @@
                     </svg>
                 </div>
                 <h3>Commercial & Custom</h3>
-                <p>Specialized solutions for commercial spaces, outdoor applications, fireplaces, and custom architectural features. Our in-house team handles complex projects with precision and attention to detail in our own fabrication facility.</p>
+                <p>Specialized solutions for commercial spaces, outdoor applications, fireplaces, and custom architectural features. Our team handles complex projects with precision and attention to detail.</p>
             </div>
             
             <div class="service-card">
@@ -123,7 +123,7 @@
                     </svg>
                 </div>
                 <h3>Specialty Applications</h3>
-                <p>Expert solutions for unique projects including outdoor kitchens, custom furniture, architectural features, and specialty installations. Our in-house fabrication ensures exceptional quality for any application.</p>
+                <p>Expert solutions for unique projects including outdoor kitchens, custom furniture, architectural features, and specialty installations. We ensure exceptional quality for any application.</p>
             </div>
         </div>
     </div>
@@ -142,7 +142,7 @@
             </div>
             <div class="expertise-content">
                 <h3>Premium Materials</h3>
-                <p>We work directly with trusted suppliers to offer the finest selection of natural stone and engineered surfaces, ensuring quality and consistency in every project through our in-house fabrication process.</p>
+                <p>We work with a carefully selected network of suppliers to offer the finest selection of natural stone and engineered surfaces, ensuring quality and consistency in every project.</p>
             </div>
         </div>
         
@@ -154,7 +154,7 @@
             </div>
             <div class="expertise-content">
                 <h3>Quality Assurance</h3>
-                <p>Our rigorous in-house quality control process ensures that every countertop meets our exacting standards for craftsmanship and finish, with every step supervised by our experienced team.</p>
+                <p>Our rigorous quality control process ensures that every countertop meets our exacting standards for craftsmanship and finish.</p>
             </div>
         </div>
         
@@ -178,7 +178,7 @@
             </div>
             <div class="expertise-content">
                 <h3>Project Management</h3>
-                <p>Our experienced team oversees every aspect of your project in our own facility, from material selection to final installation, ensuring a seamless process with complete quality control.</p>
+                <p>Our experienced team oversees every aspect of your project, from material selection to final installation, ensuring a seamless process.</p>
             </div>
         </div>
     </div>
