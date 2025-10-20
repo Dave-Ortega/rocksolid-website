@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accessibility Statement - Colorado Fabrication Partners</title>
+
+<!-- Import Inter font from Google Fonts -->
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<!-- Skip Navigation Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+
+<!-- Navigation -->
+<nav class="navbar" id="navigation" role="navigation" aria-label="Main navigation">
+<div class="container nav-container">
+    <a class="logo" href="index.html" aria-label="Colorado Fabrication Partners - Home">Colorado <span>Fabrication</span> Partners</a>
+    <button class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+    </button>
+    <div class="nav-links" id="nav-links" role="menubar" aria-hidden="true">
+        <a href="index.html#process" role="menuitem">Our Process</a>
+        <a href="index.html#about" role="menuitem">About Us</a>
+        <a href="index.html#services" role="menuitem">Our Services</a>
+        <a href="index.html#contact" class="contact-button" role="menuitem">Get Started</a>
+        <a href="estimating.html" class="secondary-link" role="menuitem">Estimating Services</a>
+    </div>
+</div>
+</nav>
+
+<!-- Main Content -->
+<main id="main-content">
+<section class="section section-light" style="padding-top: 120px;">
+    <div class="container">
+        <h1>Website Accessibility Statement</h1>
+        
+        <div class="accessibility-content">
+            <h2>Our Commitment to Accessibility</h2>
+            <p>Colorado Fabrication Partners is committed to ensuring digital accessibility for all users, including those with disabilities. We strive to provide an inclusive online experience that meets or exceeds the Web Content Accessibility Guidelines (WCAG) 2.1 AA standards.</p>
+
+            <h2>Implemented Accessibility Features</h2>
+            
+            <h3>1. Skip Navigation Links</h3>
+            <ul>
+                <li><strong>Location</strong>: Top of each page</li>
+                <li><strong>Purpose</strong>: Allows keyboard users to skip to main content</li>
+                <li><strong>Implementation</strong>: Hidden by default, visible on focus</li>
+                <li><strong>WCAG Compliance</strong>: 2.4.1 Bypass Blocks</li>
+            </ul>
+
+            <h3>2. Semantic HTML Structure</h3>
+            <ul>
+                <li><strong>Main landmark</strong>: <code>&lt;main id="main-content"&gt;</code> wraps primary content</li>
+                <li><strong>Navigation landmark</strong>: <code>&lt;nav role="navigation"&gt;</code> with proper labeling</li>
+                <li><strong>Section landmarks</strong>: Each major section has <code>role="region"</code> and <code>aria-labelledby</code></li>
+                <li><strong>Heading hierarchy</strong>: Proper h1-h6 structure throughout</li>
+                <li><strong>WCAG Compliance</strong>: 1.3.1 Info and Relationships</li>
+            </ul>
+
+            <h3>3. ARIA Labels and Roles</h3>
+            <ul>
+                <li><strong>Interactive elements</strong>: All buttons and links have proper ARIA labels</li>
+                <li><strong>Mobile menu</strong>: Proper <code>aria-expanded</code> and <code>aria-controls</code> attributes</li>
+                <li><strong>Form elements</strong>: Contact form iframe has proper title and aria-label</li>
+                <li><strong>Decorative elements</strong>: Icons marked with <code>aria-hidden="true"</code></li>
+                <li><strong>WCAG Compliance</strong>: 4.1.2 Name, Role, Value</li>
+            </ul>
+
+            <h3>4. Keyboard Navigation</h3>
+            <ul>
+                <li><strong>Focus management</strong>: Visible focus indicators on all interactive elements</li>
+                <li><strong>Tab order</strong>: Logical tab sequence throughout the site</li>
+                <li><strong>Mobile menu</strong>: Proper keyboard support with ARIA states</li>
+                <li><strong>Skip links</strong>: Allow quick navigation to main sections</li>
+                <li><strong>WCAG Compliance</strong>: 2.1.1 Keyboard, 2.4.3 Focus Order</li>
+            </ul>
+
+            <h3>5. Color and Contrast</h3>
+            <ul>
+                <li><strong>Color contrast</strong>: Meets WCAG AA standards (4.5:1 ratio)</li>
+                <li><strong>High contrast mode</strong>: Support for <code>prefers-contrast: high</code></li>
+                <li><strong>Color independence</strong>: Information not conveyed by color alone</li>
+                <li><strong>WCAG Compliance</strong>: 1.4.3 Contrast (Minimum)</li>
+            </ul>
+
+            <h3>6. Images and Media</h3>
+            <ul>
+                <li><strong>Alt text</strong>: Descriptive alternative text for all images</li>
+                <li><strong>Decorative images</strong>: Properly marked with <code>aria-hidden="true"</code></li>
+                <li><strong>Image context</strong>: Alt text describes the purpose and content</li>
+                <li><strong>WCAG Compliance</strong>: 1.1.1 Non-text Content</li>
+            </ul>
+
+            <h3>7. Mobile Accessibility</h3>
+            <ul>
+                <li><strong>Touch targets</strong>: Minimum 44px touch target size</li>
+                <li><strong>Responsive design</strong>: Works across all device sizes</li>
+                <li><strong>Mobile menu</strong>: Accessible with proper ARIA states</li>
+                <li><strong>Viewport</strong>: Proper viewport meta tag for mobile devices</li>
+                <li><strong>WCAG Compliance</strong>: 1.4.10 Reflow</li>
+            </ul>
+
+            <h3>8. Motion and Animation</h3>
+            <ul>
+                <li><strong>Reduced motion</strong>: Respects <code>prefers-reduced-motion</code> setting</li>
+                <li><strong>Animation control</strong>: Animations can be disabled for sensitive users</li>
+                <li><strong>WCAG Compliance</strong>: 2.3.3 Animation from Interactions</li>
+            </ul>
+
+            <h3>9. Form Accessibility</h3>
+            <ul>
+                <li><strong>Contact form</strong>: Google Forms iframe with proper labeling</li>
+                <li><strong>Form labels</strong>: Clear labeling for all form elements</li>
+                <li><strong>Error handling</strong>: Proper error messaging structure</li>
+                <li><strong>WCAG Compliance</strong>: 3.3.2 Labels or Instructions</li>
+            </ul>
+
+            <h3>10. Testing and Validation</h3>
+            <ul>
+                <li><strong>Automated checker</strong>: Built-in accessibility validation script</li>
+                <li><strong>Console reporting</strong>: Issues logged to browser console</li>
+                <li><strong>Visual indicator</strong>: Shows accessibility status on page</li>
+                <li><strong>Manual testing</strong>: Keyboard and screen reader testing recommended</li>
+            </ul>
+
+            <h2>Standards and Guidelines</h2>
+            
+            <h3>Accessibility Standards</h3>
+            <ul>
+                <li><strong>WCAG 2.1 AA</strong>: Our website follows the Web Content Accessibility Guidelines</li>
+                <li><strong>ADA Compliance</strong>: Meets Americans with Disabilities Act requirements</li>
+                <li><strong>Section 508</strong>: Adheres to federal accessibility standards where applicable</li>
+            </ul>
+
+            <h3>Continuous Improvement</h3>
+            <ul>
+                <li><strong>Regular testing</strong>: We conduct automated and manual accessibility testing</li>
+                <li><strong>User feedback</strong>: We welcome feedback from users with disabilities</li>
+                <li><strong>Ongoing updates</strong>: We continuously improve our accessibility features</li>
+                <li><strong>Staff training</strong>: Our team is trained on accessibility best practices</li>
+            </ul>
+
+            <h2>How We Test Our Website</h2>
+            
+            <h3>Our Testing Process</h3>
+            <ul>
+                <li><strong>Automated testing</strong>: We use accessibility tools to identify potential issues</li>
+                <li><strong>Manual testing</strong>: Our team tests with various assistive technologies</li>
+                <li><strong>User testing</strong>: We work with users with disabilities to improve our site</li>
+                <li><strong>Regular audits</strong>: We conduct comprehensive accessibility reviews</li>
+            </ul>
+
+            <h3>Assistive Technologies We Support</h3>
+            <ul>
+                <li><strong>Screen readers</strong>: NVDA, JAWS, VoiceOver, TalkBack</li>
+                <li><strong>Voice control</strong>: Dragon NaturallySpeaking, Voice Control</li>
+                <li><strong>Keyboard navigation</strong>: Full keyboard accessibility</li>
+                <li><strong>Mobile accessibility</strong>: iOS and Android accessibility features</li>
+            </ul>
+
+            <h2>Feedback and Support</h2>
+            
+            <h3>Reporting Accessibility Issues</h3>
+            <p>If you encounter any accessibility barriers on our website, please contact us:</p>
+            <ul>
+                <li><strong>Email</strong>: <a href="mailto:estimates@rocksolidestimates.com">estimates@rocksolidestimates.com</a></li>
+                <li><strong>Response time</strong>: We respond to accessibility concerns within 24-48 hours</li>
+                <li><strong>Priority</strong>: Accessibility issues receive high priority attention</li>
+            </ul>
+
+            <h3>Alternative Access Methods</h3>
+            <p>If you need assistance accessing our services:</p>
+            <ul>
+                <li><strong>Phone</strong>: Contact us directly for personalized service</li>
+                <li><strong>Email</strong>: We can provide information in alternative formats</li>
+                <li><strong>In-person</strong>: Visit our facility for face-to-face assistance</li>
+            </ul>
+
+            <h2>Accessibility Resources</h2>
+            
+            <h3>For Users</h3>
+            <ul>
+                <li><strong>WebAIM</strong>: <a href="https://webaim.org" target="_blank" rel="noopener">Comprehensive accessibility resources and tutorials</a></li>
+                <li><strong>A11y Project</strong>: <a href="https://www.a11yproject.com" target="_blank" rel="noopener">Community-driven accessibility information</a></li>
+                <li><strong>MDN Web Docs</strong>: <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility" target="_blank" rel="noopener">Technical accessibility documentation</a></li>
+            </ul>
+
+            <h3>Browser Accessibility Features</h3>
+            <ul>
+                <li><strong>Chrome</strong>: Built-in screen reader and accessibility tools</li>
+                <li><strong>Firefox</strong>: Accessibility features and extensions</li>
+                <li><strong>Safari</strong>: VoiceOver integration and accessibility options</li>
+                <li><strong>Edge</strong>: Windows accessibility features</li>
+            </ul>
+
+            <h2>Contact Information</h2>
+            
+            <h3>Accessibility Support</h3>
+            <ul>
+                <li><strong>Email</strong>: <a href="mailto:estimates@rocksolidestimates.com?subject=Accessibility%20Support">estimates@rocksolidestimates.com</a></li>
+                <li><strong>Subject Line</strong>: Please include "Accessibility" in your subject line</li>
+                <li><strong>Response Time</strong>: We respond to accessibility concerns within 24-48 hours</li>
+            </ul>
+
+            <h3>Business Hours</h3>
+            <ul>
+                <li><strong>Monday - Friday</strong>: 8:00 AM - 5:00 PM MST</li>
+                <li><strong>Weekend</strong>: Limited availability for urgent accessibility issues</li>
+            </ul>
+
+            <div class="accessibility-footer">
+                <p><em>This accessibility statement was last updated on January 2025 and is reviewed quarterly to ensure accuracy and completeness.</em></p>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="container">
+    <div class="footer-content">
+        <p>&copy; 2025 Colorado Fabrication Partners. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="accessibility.html">Accessibility Statement</a>
+            <span class="footer-separator">|</span>
+            <a href="mailto:estimates@rocksolidestimates.com">Contact Us</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<script>
+    // Mobile menu functionality
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const navLinks = document.querySelector('.nav-links');
+
+    mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = navLinks.classList.contains('active');
+        navLinks.classList.toggle('active');
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        navLinks.setAttribute('aria-hidden', isExpanded);
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !mobileMenuButton.contains(e.target)) {
+            navLinks.classList.remove('active');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
+        }
+    });
+</script>
+
+<!-- Accessibility Checker -->
+<script src="accessibility-checker.js"></script>
+
+<style>
+    .accessibility-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .accessibility-content h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #1e293b;
+    }
+
+    .accessibility-content h2 {
+        color: #1e293b;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #dc6f41;
+        padding-bottom: 0.5rem;
+    }
+
+    .accessibility-content h3 {
+        color: #1e293b;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .accessibility-content ul {
+        margin-bottom: 1.5rem;
+        padding-left: 1.5rem;
+    }
+
+    .accessibility-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.6;
+    }
+
+    .accessibility-content code {
+        background-color: #f1f5f9;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+    }
+
+    .accessibility-content a {
+        color: #dc6f41;
+        text-decoration: none;
+    }
+
+    .accessibility-content a:hover,
+    .accessibility-content a:focus {
+        text-decoration: underline;
+    }
+
+    .accessibility-footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e2e8f0;
+        text-align: center;
+    }
+
+    .accessibility-footer p {
+        color: #64748b;
+        font-style: italic;
+    }
+</style>
+</body>
+</html>

@@ -13,44 +13,50 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+<!-- Skip Navigation Links for Accessibility -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<a href="#navigation" class="skip-link">Skip to navigation</a>
+<a href="#contact" class="skip-link">Skip to contact form</a>
+
 <!-- Navigation -->
-<nav class="navbar">
+<nav class="navbar" id="navigation" role="navigation" aria-label="Main navigation">
 <div class="container nav-container">
-    <a class="logo">Rock <span>Solid</span> Estimating</a>
-    <button class="mobile-menu-button" aria-label="Toggle menu">
+    <a class="logo" href="#main-content" aria-label="Rock Solid Estimating - Home">Rock <span>Solid</span> Estimating</a>
+    <button class="mobile-menu-button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
     </button>
-    <div class="nav-links">
-        <a href="#process">Our Process</a>
-        <a href="#about">About Us</a>
-        <a href="#services">Our Services</a>
-        <a href="#contact" class="contact-button">Get Started</a>
-        <a href="/" class="secondary-link">Fabrication Services</a>
+    <div class="nav-links" id="nav-links" role="menubar" aria-hidden="true">
+        <a href="#process" role="menuitem">Our Process</a>
+        <a href="#about" role="menuitem">About Us</a>
+        <a href="#services" role="menuitem">Our Services</a>
+        <a href="#contact" class="contact-button" role="menuitem">Get Started</a>
+        <a href="/" class="secondary-link" role="menuitem">Fabrication Services</a>
     </div>
 </div>
 </nav>
 
 <!-- Hero Section -->
-<section class="hero">
+<main id="main-content">
+<section class="hero" role="banner">
 <div class="container">
     <div class="hero-background"></div>
     <div class="hero-content">
         <h1>Professional <span>Countertop</span> Estimating</h1>
         <p>Welcome to Rock Solid Estimating, a specialized division of Colorado Fabrication Partners. We provide comprehensive estimating services for contractors in the countertop industry. Our experienced team delivers detailed takeoffs, accurate material calculations, and competitive pricing strategies to help you win more projects.</p>
         <div class="hero-cta-group">
-            <a href="#contact" class="hero-cta primary">Discuss Your Project</a>
-            <a href="#services" class="hero-cta secondary">Explore Our Services</a>
+            <a href="#contact" class="hero-cta primary" role="button">Discuss Your Project</a>
+            <a href="#services" class="hero-cta secondary" role="button">Explore Our Services</a>
         </div>
     </div>
 </div>
 </section>
 
 <!-- Process Section -->
-<section class="process" id="process">
+<section class="process" id="process" role="region" aria-labelledby="process-heading">
 <div class="container">
-    <h2 class="section-title">Our Estimating Process</h2>
+    <h2 class="section-title" id="process-heading">Our Estimating Process</h2>
     <div class="process-steps">
         <div class="step-card">
             <div class="step-number">1</div>
@@ -72,9 +78,9 @@
 </section>
 
 <!-- About Us Section -->
-<section class="section section-light" id="about">
+<section class="section section-light" id="about" role="region" aria-labelledby="about-heading">
     <div class="container">
-        <h2 class="section-title">About Rock Solid Estimating</h2>
+        <h2 class="section-title" id="about-heading">About Rock Solid Estimating</h2>
         <div class="about-grid">
             <div class="about-content">
                 <h2>Our Story</h2>
@@ -83,16 +89,16 @@
                 <p>Our mission is to provide our clients with the tools and information they need to bid confidently and win more projects, backed by our commitment to accuracy, detail, and professional service.</p>
             </div>
             <div class="about-image">
-                <img src="estimator.jpg" alt="Countertop estimating in progress" />
+                <img src="estimator.jpg" alt="Professional estimator analyzing countertop project plans and measurements on computer" />
             </div>
         </div>
     </div>
 </section>
 
 <!-- Services Section -->
-<section class="section section-dark" id="services">
+<section class="section section-dark" id="services" role="region" aria-labelledby="services-heading">
     <div class="container">
-        <h2 class="section-title">Our Services</h2>
+        <h2 class="section-title" id="services-heading">Our Services</h2>
         <p>We offer comprehensive estimating services for both residential and commercial projects, ensuring accurate and detailed estimates for every bid.</p>
         
         <div class="services-grid">
@@ -233,19 +239,28 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdvVQVUIU6b2uYJDTQ_JcycXilSk_IIyysOBEqDUD73CDPejA/viewform?embedded=true" width="640" height="768" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<section id="contact" role="region" aria-labelledby="contact-heading">
+    <h2 id="contact-heading" class="sr-only">Contact Us</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdvVQVUIU6b2uYJDTQ_JcycXilSk_IIyysOBEqDUD73CDPejA/viewform?embedded=true" width="640" height="768" frameborder="0" marginheight="0" marginwidth="0" title="Contact form for project inquiries" aria-label="Contact form for project inquiries">Loading contact form…</iframe>
     <div>
         <p>Or contact us directly at</p>
         <p id="contact-us">estimates@rocksolidestimates.com</p>
         <br>
     </div>
 </section>
+</main>
 
 <!-- Footer -->
 <footer class="footer">
 <div class="container">
-    <p>&copy; 2025 Rock Solid Estimating. All rights reserved.</p>
+    <div class="footer-content">
+        <p>&copy; 2025 Rock Solid Estimating. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="accessibility.html">Accessibility Statement</a>
+            <span class="footer-separator">|</span>
+            <a href="mailto:estimates@rocksolidestimates.com">Contact Us</a>
+        </div>
+    </div>
 </div>
 </footer>
 
@@ -255,13 +270,18 @@
     const navLinks = document.querySelector('.nav-links');
 
     mobileMenuButton.addEventListener('click', () => {
+        const isExpanded = navLinks.classList.contains('active');
         navLinks.classList.toggle('active');
+        mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+        navLinks.setAttribute('aria-hidden', isExpanded);
     });
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
         if (!navLinks.contains(e.target) && !mobileMenuButton.contains(e.target)) {
             navLinks.classList.remove('active');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            navLinks.setAttribute('aria-hidden', 'true');
         }
     });
 
@@ -284,5 +304,8 @@
         });
     });
 </script>
+
+<!-- Accessibility Checker -->
+<script src="accessibility-checker.js"></script>
 </body>
 </html>
