@@ -7,7 +7,7 @@
 /* Accessibility: Skip Links */
 .skip-link {
     position: absolute;
-    top: -40px;
+    top: -1000px;
     left: 6px;
     background: #000;
     color: #fff;
@@ -16,6 +16,7 @@
     z-index: 10000;
     border-radius: 4px;
     font-weight: 600;
+    transition: top 0.2s ease;
 }
 
 .skip-link:focus {
@@ -137,7 +138,6 @@ body {
 
 .nav-links a.contact-button:hover {
     background-color: #c25a30;
-    transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(220, 111, 65, 0.3);
     color: white;
 }
@@ -710,6 +710,11 @@ body {
 .nav-links a:focus,
 .nav-links a:hover {
     color: #dc6f41;
+}
+
+/* Special hover effect for non-button nav links */
+.nav-links a:not(.contact-button):focus,
+.nav-links a:not(.contact-button):hover {
     background-color: rgba(220, 111, 65, 0.1);
     border-radius: 4px;
     padding: 4px 8px;

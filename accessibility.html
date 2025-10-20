@@ -38,10 +38,15 @@
 
 <!-- Main Content -->
 <main id="main-content">
-<section class="section section-light" style="padding-top: 120px;">
+<section class="accessibility-hero">
     <div class="container">
         <h1>Website Accessibility Statement</h1>
-        
+        <p class="accessibility-subtitle">Our commitment to digital accessibility for all users</p>
+    </div>
+</section>
+
+<section class="section section-light">
+    <div class="container">
         <div class="accessibility-content">
             <h2>Our Commitment to Accessibility</h2>
             <p>Colorado Fabrication Partners is committed to ensuring digital accessibility for all users, including those with disabilities. We strive to provide an inclusive online experience that meets or exceeds the Web Content Accessibility Guidelines (WCAG) 2.1 AA standards.</p>
@@ -264,16 +269,33 @@
 <script src="accessibility-checker.js"></script>
 
 <style>
+    /* Accessibility Page Hero */
+    .accessibility-hero {
+        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+        color: white;
+        padding: 120px 0 80px;
+        text-align: center;
+    }
+
+    .accessibility-hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        color: white;
+    }
+
+    .accessibility-subtitle {
+        font-size: 1.25rem;
+        color: #cbd5e1;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
     .accessibility-content {
         max-width: 800px;
         margin: 0 auto;
         text-align: left;
-    }
-
-    .accessibility-content h1 {
-        text-align: center;
-        margin-bottom: 2rem;
-        color: #1e293b;
     }
 
     .accessibility-content h2 {
@@ -328,6 +350,34 @@
     .accessibility-footer p {
         color: #64748b;
         font-style: italic;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .accessibility-hero {
+            padding: 100px 0 60px;
+        }
+
+        .accessibility-hero h1 {
+            font-size: 2.25rem;
+        }
+
+        .accessibility-subtitle {
+            font-size: 1.125rem;
+            padding: 0 1rem;
+        }
+
+        .accessibility-content {
+            padding: 0 1rem;
+        }
+
+        .accessibility-content h2 {
+            font-size: 1.5rem;
+        }
+
+        .accessibility-content h3 {
+            font-size: 1.25rem;
+        }
     }
 </style>
 </body>
