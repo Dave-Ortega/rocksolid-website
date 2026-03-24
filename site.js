@@ -178,14 +178,15 @@
         }
 
         const modalImage = document.getElementById('project-modal-image');
-        const modalCaption = document.getElementById('project-modal-caption');
         const modalTitle = document.getElementById('project-modal-title');
+        const modalCounter = document.getElementById('project-modal-counter');
+        const modalThumbnails = document.getElementById('project-modal-thumbnails');
         const openButtons = document.querySelectorAll('.project-photo-item');
         const closeButton = document.querySelector('.project-modal-close');
         const prevButton = document.querySelector('.project-modal-nav.prev');
         const nextButton = document.querySelector('.project-modal-nav.next');
 
-        if (!modalImage || !modalCaption || !closeButton || !prevButton || !nextButton) {
+        if (!modalImage || !modalTitle || !modalCounter || !modalThumbnails || !closeButton || !prevButton || !nextButton) {
             return;
         }
 
@@ -209,11 +210,43 @@
 
             modalImage.src = imagePath;
             modalImage.alt = activeProjectLabel + ', gallery image ' + imagePosition + ' of ' + imageCount;
-            modalCaption.textContent = activeProjectLabel + ' - image ' + imagePosition + ' of ' + imageCount;
+            modalTitle.textContent = activeProjectLabel + ' gallery';
+            modalCounter.textContent = 'Photo ' + imagePosition + ' of ' + imageCount;
 
-            if (modalTitle) {
-                modalTitle.textContent = activeProjectLabel + ' gallery';
-            }
+            prevButton.disabled = imageCount < 2;
+            nextButton.disabled = imageCount < 2;
+
+            Array.from(modalThumbnails.querySelectorAll('.project-modal-thumbnail')).forEach((thumbnailButton, index) => {
+                const isActive = index === activeIndex;
+                thumbnailButton.classList.toggle('is-active', isActive);
+                thumbnailButton.setAttribute('aria-current', isActive ? 'true' : 'false');
+            });
+        }
+
+        function buildThumbnails() {
+            modalThumbnails.innerHTML = '';
+
+            activeImages.forEach((imagePath, index) => {
+                const thumbnailButton = document.createElement('button');
+                const thumbnailImage = document.createElement('img');
+                const imageNumber = index + 1;
+
+                thumbnailButton.type = 'button';
+                thumbnailButton.className = 'project-modal-thumbnail';
+                thumbnailButton.setAttribute('aria-label', 'Show photo ' + imageNumber + ' for ' + activeProjectLabel);
+                thumbnailButton.addEventListener('click', () => {
+                    activeIndex = index;
+                    renderModalImage();
+                });
+
+                thumbnailImage.src = imagePath;
+                thumbnailImage.alt = '';
+                thumbnailImage.loading = 'lazy';
+                thumbnailImage.decoding = 'async';
+
+                thumbnailButton.appendChild(thumbnailImage);
+                modalThumbnails.appendChild(thumbnailButton);
+            });
         }
 
         function openProject(projectLabel, images, triggerButton) {
@@ -223,9 +256,10 @@
 
             lastFocusedElement = triggerButton || document.activeElement;
             activeProjectLabel = projectLabel;
-            activeImages = images;
+            activeImages = Array.from(new Set(images));
             activeIndex = 0;
 
+            buildThumbnails();
             renderModalImage();
             modal.classList.add('open');
             modal.setAttribute('aria-hidden', 'false');
@@ -239,7 +273,9 @@
             document.body.style.overflow = '';
             modalImage.src = '';
             modalImage.alt = '';
-            modalCaption.textContent = '';
+            modalCounter.textContent = '';
+            modalTitle.textContent = 'Project gallery';
+            modalThumbnails.innerHTML = '';
 
             if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
                 lastFocusedElement.focus();
