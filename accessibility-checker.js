@@ -1,240 +1,266 @@
-/**
- * Accessibility Checker for Colorado Fabrication Partners Website
- * This script provides basic accessibility validation and testing
- */
-
-class AccessibilityChecker {
-    constructor() {
-        this.issues = [];
-        this.init();
-    }
-
-    init() {
-        // Run checks when DOM is loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.runChecks());
-        } else {
-            this.runChecks();
+(function () {
+    /**
+     * Lightweight development-only accessibility helper.
+     *
+     * This is intentionally limited to simple heuristics and should not be
+     * treated as proof of WCAG or ADA compliance.
+     */
+    class AccessibilityChecker {
+        constructor(root) {
+            this.root = root || document;
+            this.issues = [];
         }
-    }
 
-    runChecks() {
-        this.checkImages();
-        this.checkHeadings();
-        this.checkLinks();
-        this.checkButtons();
-        this.checkFormElements();
-        this.checkColorContrast();
-        this.checkKeyboardNavigation();
-        this.reportResults();
-    }
+        addIssue(type, element, message, suggestion) {
+            this.issues.push({
+                type: type,
+                element: element,
+                message: message,
+                suggestion: suggestion
+            });
+        }
 
-    checkImages() {
-        const images = document.querySelectorAll('img');
-        images.forEach((img, index) => {
-            if (!img.alt || img.alt.trim() === '') {
-                this.issues.push({
-                    type: 'error',
-                    element: img,
-                    message: `Image ${index + 1} is missing alt text`,
-                    fix: 'Add descriptive alt text to the image'
-                });
-            }
-        });
-    }
+        getAccessibleName(element) {
+            const ariaLabel = element.getAttribute('aria-label');
+            const ariaLabelledBy = element.getAttribute('aria-labelledby');
 
-    checkHeadings() {
-        const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-        let lastLevel = 0;
-        
-        headings.forEach((heading, index) => {
-            const level = parseInt(heading.tagName.charAt(1));
-            
-            if (index === 0 && level !== 1) {
-                this.issues.push({
-                    type: 'warning',
-                    element: heading,
-                    message: 'First heading should be h1',
-                    fix: 'Change the first heading to h1'
-                });
+            if (ariaLabel && ariaLabel.trim()) {
+                return ariaLabel.trim();
             }
-            
-            if (level > lastLevel + 1) {
-                this.issues.push({
-                    type: 'warning',
-                    element: heading,
-                    message: `Heading level ${level} skips level ${lastLevel + 1}`,
-                    fix: 'Use proper heading hierarchy'
-                });
-            }
-            
-            lastLevel = level;
-        });
-    }
 
-    checkLinks() {
-        const links = document.querySelectorAll('a');
-        links.forEach((link, index) => {
-            if (!link.href && !link.getAttribute('role')) {
-                this.issues.push({
-                    type: 'warning',
-                    element: link,
-                    message: `Link ${index + 1} has no href attribute`,
-                    fix: 'Add href attribute or role="button" for button-like links'
-                });
-            }
-            
-            if (link.href === '#' && !link.getAttribute('aria-label')) {
-                this.issues.push({
-                    type: 'warning',
-                    element: link,
-                    message: `Link ${index + 1} has empty href`,
-                    fix: 'Add aria-label for better accessibility'
-                });
-            }
-        });
-    }
+            if (ariaLabelledBy) {
+                const referencedText = ariaLabelledBy
+                    .split(/\s+/)
+                    .map((id) => {
+                        const labelElement = document.getElementById(id);
+                        return labelElement ? labelElement.textContent.trim() : '';
+                    })
+                    .join(' ')
+                    .trim();
 
-    checkButtons() {
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach((button, index) => {
-            if (!button.textContent.trim() && !button.getAttribute('aria-label')) {
-                this.issues.push({
-                    type: 'error',
-                    element: button,
-                    message: `Button ${index + 1} has no accessible name`,
-                    fix: 'Add text content or aria-label'
-                });
+                if (referencedText) {
+                    return referencedText;
+                }
             }
-        });
-    }
 
-    checkFormElements() {
-        const forms = document.querySelectorAll('form');
-        forms.forEach((form, index) => {
-            const inputs = form.querySelectorAll('input, textarea, select');
-            inputs.forEach((input, inputIndex) => {
-                if (!input.id && !input.getAttribute('aria-label')) {
-                    this.issues.push({
-                        type: 'warning',
-                        element: input,
-                        message: `Form input ${inputIndex + 1} has no accessible name`,
-                        fix: 'Add id and label or aria-label'
-                    });
+            return element.textContent.trim();
+        }
+
+        run() {
+            this.issues = [];
+            this.checkImages();
+            this.checkButtons();
+            this.checkLinks();
+            this.checkHeadingOrder();
+            this.checkIframes();
+            this.checkFormFields();
+            this.checkDuplicateIds();
+            this.report();
+            return this.issues;
+        }
+
+        checkImages() {
+            this.root.querySelectorAll('img').forEach((image, index) => {
+                if (!image.hasAttribute('alt')) {
+                    this.addIssue(
+                        'error',
+                        image,
+                        'Image ' + (index + 1) + ' is missing an alt attribute.',
+                        'Add alt text for informative images, or alt="" for decorative images.'
+                    );
                 }
             });
-        });
-    }
+        }
 
-    checkColorContrast() {
-        // Basic color contrast check - this is a simplified version
-        const elements = document.querySelectorAll('h1, h2, h3, p, a, button');
-        elements.forEach((element) => {
-            const styles = window.getComputedStyle(element);
-            const color = styles.color;
-            const backgroundColor = styles.backgroundColor;
-            
-            // This is a basic check - in production, use a proper contrast checker
-            if (color === backgroundColor) {
-                this.issues.push({
-                    type: 'error',
-                    element: element,
-                    message: 'Text and background colors are the same',
-                    fix: 'Improve color contrast'
+        checkButtons() {
+            this.root.querySelectorAll('button').forEach((button, index) => {
+                if (!this.getAccessibleName(button)) {
+                    this.addIssue(
+                        'error',
+                        button,
+                        'Button ' + (index + 1) + ' does not have an accessible name.',
+                        'Add visible text, aria-label, or aria-labelledby.'
+                    );
+                }
+            });
+        }
+
+        checkLinks() {
+            this.root.querySelectorAll('a').forEach((link, index) => {
+                const href = link.getAttribute('href');
+                const accessibleName = this.getAccessibleName(link);
+
+                if (!href) {
+                    this.addIssue(
+                        'warning',
+                        link,
+                        'Link ' + (index + 1) + ' is missing an href attribute.',
+                        'Add an href or use a button element for actions.'
+                    );
+                }
+
+                if (href === '#') {
+                    this.addIssue(
+                        'warning',
+                        link,
+                        'Link ' + (index + 1) + ' points to "#".',
+                        'Use a real destination or convert the control to a button.'
+                    );
+                }
+
+                if (!accessibleName) {
+                    this.addIssue(
+                        'error',
+                        link,
+                        'Link ' + (index + 1) + ' does not have an accessible name.',
+                        'Add visible link text, aria-label, or aria-labelledby.'
+                    );
+                }
+            });
+        }
+
+        checkHeadingOrder() {
+            const headings = Array.from(this.root.querySelectorAll('h1, h2, h3, h4, h5, h6'));
+            let previousLevel = 0;
+
+            headings.forEach((heading, index) => {
+                const level = Number(heading.tagName.slice(1));
+
+                if (index === 0 && level !== 1) {
+                    this.addIssue(
+                        'warning',
+                        heading,
+                        'The first heading on the page is not an h1.',
+                        'Start the page heading structure with a single h1 when appropriate.'
+                    );
+                }
+
+                if (previousLevel && level > previousLevel + 1) {
+                    this.addIssue(
+                        'warning',
+                        heading,
+                        'Heading level jumps from h' + previousLevel + ' to h' + level + '.',
+                        'Avoid skipping heading levels where possible.'
+                    );
+                }
+
+                previousLevel = level;
+            });
+        }
+
+        checkIframes() {
+            this.root.querySelectorAll('iframe').forEach((iframe, index) => {
+                const title = iframe.getAttribute('title');
+
+                if (!title || !title.trim()) {
+                    this.addIssue(
+                        'error',
+                        iframe,
+                        'Iframe ' + (index + 1) + ' is missing a title.',
+                        'Add a descriptive title attribute so screen reader users know what the iframe contains.'
+                    );
+                }
+            });
+        }
+
+        checkFormFields() {
+            const fields = this.root.querySelectorAll('input, select, textarea');
+
+            fields.forEach((field, index) => {
+                const id = field.getAttribute('id');
+                const hasLabel = id ? this.root.querySelector('label[for="' + CSS.escape(id) + '"]') : null;
+                const accessibleName = this.getAccessibleName(field);
+
+                if (!hasLabel && !accessibleName) {
+                    this.addIssue(
+                        'warning',
+                        field,
+                        'Form field ' + (index + 1) + ' may not have a label.',
+                        'Associate a label element or use aria-label/aria-labelledby.'
+                    );
+                }
+            });
+        }
+
+        checkDuplicateIds() {
+            const seenIds = new Map();
+
+            this.root.querySelectorAll('[id]').forEach((element) => {
+                const id = element.id;
+
+                if (!seenIds.has(id)) {
+                    seenIds.set(id, element);
+                    return;
+                }
+
+                this.addIssue(
+                    'error',
+                    element,
+                    'Duplicate id "' + id + '" found on the page.',
+                    'Ensure every id value is unique.'
+                );
+            });
+        }
+
+        report() {
+            const errors = this.issues.filter((issue) => issue.type === 'error');
+            const warnings = this.issues.filter((issue) => issue.type === 'warning');
+
+            console.group('Accessibility helper results');
+            console.info('These results are heuristic only and do not replace manual testing or a full audit.');
+
+            if (!this.issues.length) {
+                console.info('No obvious issues were found by the helper.');
+                console.groupEnd();
+                return;
+            }
+
+            if (errors.length) {
+                console.group('Errors: ' + errors.length);
+                errors.forEach((issue) => {
+                    console.error(issue.message, issue.element);
+                    console.info('Suggestion: ' + issue.suggestion);
                 });
+                console.groupEnd();
             }
-        });
-    }
 
-    checkKeyboardNavigation() {
-        const focusableElements = document.querySelectorAll('a, button, input, textarea, select, [tabindex]');
-        let tabIndexValues = [];
-        
-        focusableElements.forEach((element) => {
-            const tabIndex = element.getAttribute('tabindex');
-            if (tabIndex) {
-                tabIndexValues.push(parseInt(tabIndex));
+            if (warnings.length) {
+                console.group('Warnings: ' + warnings.length);
+                warnings.forEach((issue) => {
+                    console.warn(issue.message, issue.element);
+                    console.info('Suggestion: ' + issue.suggestion);
+                });
+                console.groupEnd();
             }
-        });
-        
-        // Check for duplicate tabindex values
-        const duplicates = tabIndexValues.filter((item, index) => tabIndexValues.indexOf(item) !== index);
-        if (duplicates.length > 0) {
-            this.issues.push({
-                type: 'warning',
-                element: null,
-                message: 'Duplicate tabindex values found',
-                fix: 'Ensure unique tabindex values'
-            });
-        }
-    }
 
-    reportResults() {
-        if (this.issues.length === 0) {
-            console.log('✅ Accessibility check passed! No issues found.');
-            return;
-        }
-
-        console.group('🔍 Accessibility Check Results');
-        
-        const errors = this.issues.filter(issue => issue.type === 'error');
-        const warnings = this.issues.filter(issue => issue.type === 'warning');
-        
-        if (errors.length > 0) {
-            console.group('❌ Errors (' + errors.length + ')');
-            errors.forEach(issue => {
-                console.error(issue.message, issue.element);
-                console.log('Fix: ' + issue.fix);
-            });
             console.groupEnd();
         }
-        
-        if (warnings.length > 0) {
-            console.group('⚠️ Warnings (' + warnings.length + ')');
-            warnings.forEach(issue => {
-                console.warn(issue.message, issue.element);
-                console.log('Fix: ' + issue.fix);
-            });
-            console.groupEnd();
+
+        static shouldAutoRun() {
+            const params = new URLSearchParams(window.location.search);
+            const hostname = window.location.hostname;
+            const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
+            const isFileProtocol = window.location.protocol === 'file:';
+
+            return params.has('a11y-debug') || isLocalHost || isFileProtocol;
         }
-        
-        console.groupEnd();
-        
-        // Add visual indicator to the page
-        this.addVisualIndicator();
     }
 
-    addVisualIndicator() {
-        const indicator = document.createElement('div');
-        indicator.id = 'accessibility-indicator';
-        indicator.style.cssText = `
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            background: #dc6f41;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;
-            font-size: 12px;
-            z-index: 10000;
-            cursor: pointer;
-        `;
-        indicator.textContent = `Accessibility: ${this.issues.length} issues`;
-        indicator.title = 'Click to see accessibility issues in console';
-        
-        indicator.addEventListener('click', () => {
-            this.reportResults();
-        });
-        
-        document.body.appendChild(indicator);
+    window.AccessibilityChecker = AccessibilityChecker;
+
+    if (AccessibilityChecker.shouldAutoRun()) {
+        const runChecker = function () {
+            new AccessibilityChecker(document).run();
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', runChecker);
+        } else {
+            runChecker();
+        }
     }
-}
 
-// Initialize accessibility checker
-const accessibilityChecker = new AccessibilityChecker();
-
-// Export for use in other scripts
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = AccessibilityChecker;
-}
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = AccessibilityChecker;
+    }
+})();
