@@ -837,7 +837,7 @@ body {
 }
 
 .navbar {
-    background-color: rgba(255, 255, 255, 0.98);
+    background-color: #ffffff;
     border-bottom: 1px solid var(--border-soft);
     box-shadow: 0 6px 24px rgba(15, 39, 65, 0.08);
 }
